@@ -9,19 +9,23 @@ string name = Console.ReadLine();
 Console.Write("Saatı qeyd edin: ");
 int hour=Convert.ToInt32(Console.ReadLine());
 Console.WriteLine(" ");
-double mebleg = 0;
+double mebleg = 0,evvelkiMebleg=0,sonrakiMebleg=0;
 
 if (name == "Avtobus" || name=="avtobus")
 {
-    mebleg = 6;
-    if (hour == 1)
+    mebleg = 0;
+    evvelkiMebleg = 0;
+    sonrakiMebleg = 6;
+    if (hour > 0)
     {
-        Console.WriteLine("Ödeyeceyiniz mebleğ: " + mebleg);
-    }
-    else if (hour > 0)
-    {
-        mebleg = hour*mebleg +  (hour-1)*((mebleg * 21.5) / 100);
-        Console.WriteLine("Ödeyeceyiniz mebleğ: "+mebleg);
+        while (hour > 0)
+        {
+            mebleg = evvelkiMebleg + sonrakiMebleg;
+            sonrakiMebleg = (sonrakiMebleg + ((sonrakiMebleg * 21.5) / 100));
+            evvelkiMebleg = mebleg;
+            hour--;
+        }
+        Console.WriteLine("Ödeceyiniz mebleg: " + mebleg);
     }
     else
     {
@@ -30,32 +34,40 @@ if (name == "Avtobus" || name=="avtobus")
 }
 else if(name=="Taksi" || name == "taksi")
 {
-    mebleg = 5;
-    if (hour == 1)
+    mebleg = 0;
+    evvelkiMebleg = 0;
+    sonrakiMebleg = 5;
+    if (hour > 0)
     {
-        Console.WriteLine("Ödeyeceyiniz mebleg: " + mebleg);
-    }
-    else if (hour > 0)
-    {       
-        mebleg = hour*mebleg+(hour-1)*((mebleg * 20) / 100);
-        Console.WriteLine("Ödeyeceyiniz mebleg: " + mebleg);
+        while (hour > 0)
+        {
+            mebleg = evvelkiMebleg + sonrakiMebleg;
+            sonrakiMebleg = (sonrakiMebleg + ((sonrakiMebleg * 20) / 100));
+            evvelkiMebleg = mebleg;
+            hour--;
+        }
+        Console.WriteLine("Ödeceyiniz mebleg: "+mebleg);
     }
     else
     {
-            Console.WriteLine("Siz heç bir mebleg ödemeyeceksiz!");
+        Console.WriteLine("Siz heç bir mebleg ödemeyeceksiz!");
     }
 }
-else if (name == "Yuk masini" || name == "yuk masini" || name=="Yük maşını" || name=="yük maşını")
+else if (name == "Yuk masini" || name == "yuk masini")
 {
-    mebleg = 6.5;
-    if (hour == 1)
+    mebleg = 0;
+    evvelkiMebleg = 0;
+    sonrakiMebleg = 6.5;
+    if (hour > 0)
     {
-        Console.WriteLine("Ödeyeceyiniz mebleg: " + mebleg);
-    }
-    else if (hour > 0)
-    {
-        mebleg = hour * mebleg + (hour - 1) * ((mebleg * 20) / 100);
-        Console.WriteLine("Ödeyeceyiniz mebleg: " + mebleg);
+        while (hour > 0)
+        {
+            mebleg = evvelkiMebleg + sonrakiMebleg;
+            sonrakiMebleg = (sonrakiMebleg + ((sonrakiMebleg * 25) / 100));
+            evvelkiMebleg = mebleg;
+            hour--;
+        }
+        Console.WriteLine("Ödeceyiniz mebleg: " + mebleg);
     }
     else
     {
